@@ -380,8 +380,9 @@ def line_search(x0, f0, g0, d, above_iter, max_steplength,\
     
     
     if task[:5] == b'ERROR' or task[:4] == b'WARN':
-        print(task)
-        steplength = None  # failed
+        if task[:21] != b'WARNING: STP = STPMAX':
+            print(task)
+            steplength = None  # failed
         
     return steplength
 
